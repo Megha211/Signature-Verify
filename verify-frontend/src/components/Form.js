@@ -24,7 +24,7 @@ const Form = () => {
     const fetchUsers = async () => {
       try {
         const response = await fetch(
-          "https://signature-verification-dtvv.onrender.com/get_users",
+          "http://localhost:8000/get_users",
           {
             method: "GET",
             headers: {
@@ -70,7 +70,7 @@ const Form = () => {
       const base64ForgedSignature = reader.result;
       try {
         const response = await fetch(
-          "https://signature-verification-dtvv.onrender.com/verify_signature",
+          "http://localhost:8000/verify_signature",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

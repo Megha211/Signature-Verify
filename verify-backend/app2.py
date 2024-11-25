@@ -19,7 +19,7 @@ from huggingface_hub import hf_hub_download
 load_dotenv()
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "https://signature-verification-chi.vercel.app"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 
 def normalize_image(img: np.ndarray,
@@ -429,5 +429,5 @@ def signup():
         print(e)
         return jsonify({"message": "Server Error"}), 500
 
-
-app.run(port='8000', host='0.0.0.0', debug=False)
+if __name__ == '__main__':
+    app.run(port=8000, host='0.0.0.0', debug=False)

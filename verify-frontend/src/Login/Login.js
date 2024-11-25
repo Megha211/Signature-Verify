@@ -17,7 +17,7 @@ function Login() {
     setError("");
 
     try {
-        const response = await axios.post("https://signature-verification-dtvv.onrender.com/", formData);
+        const response = await axios.post("http://localhost:8000/", formData);
 
         // Save JWT token in localStorage
         localStorage.setItem("token", response.data.token);

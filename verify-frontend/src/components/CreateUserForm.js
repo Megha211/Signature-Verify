@@ -33,16 +33,13 @@ const CreateUserForm = () => {
       genuineSignature: genuineImagePreview, // Base64 encoded string
     };
 
-    const response = await fetch(
-      "https://signature-verification-dtvv.onrender.com/create_user",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
+    const response = await fetch("http://localhost:8000/create_user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
     const data = await response.json();
     console.log(data);
 

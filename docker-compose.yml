@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  backend:
+    image: sign-verify-backend  # Use the name of your backend image
+    build:
+      context: .
+      dockerfile: Dockerfile.backend  # Path to your Dockerfile.backend
+    ports:
+      - "8000:8000"  # Expose backend app on port 8000
+    env_file:
+      - ./verify-backend/.env  # Load environment variables (like Mongo URI)
+    depends_on:
+      - mongodb  # Ensures backend starts after MongoDB is available
+    networks:
+      - backend_network
+      - frontend_network
+
+  frontend:
+    image: sign-verify-frontend  # Use the name of your frontend image
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend  # Path to your Dockerfile.frontend
+    ports:
+      - "3000:3000"  # Expose frontend app on port 3000
+    depends_on:
+      - backend  # Ensures frontend starts after backend is available
+    networks:
+      - frontend_network
+      - backend_network
+
+  mongodb:
+    image: mongo:latest  # Official MongoDB image
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db  # Persist data even after the container stops
+    ports:
+      - "27017:27017"  # Expose MongoDB on default port
+    networks:
+      - backend_network
+
+volumes:
+  mongodb_data:
+    driver: local  # Local volume to store MongoDB data
+
+networks:
+  backend_network:
+    driver: bridge
+  frontend_network:
+    driver: bridge

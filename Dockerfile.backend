@@ -13,6 +13,9 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code into the container
 COPY verify-backend/ .
 
+# Copy the .env file into the container
+COPY verify-backend/.env /app/.env
+
 # Make port 5000 available to the world outside this container
 EXPOSE 8000
 

@@ -2,7 +2,7 @@
 
 services:
   backend:
-    image: sign-verify-backend:v1.0  # Use the name of your backend image
+    image: megha2119/sign-verify-backend:v1.0  # Use the name of your backend image
     # build:
     #   context: .
     #   dockerfile: Dockerfile.backend  # Path to your Dockerfile.backend
@@ -17,7 +17,7 @@ services:
       - frontend_network
 
   frontend:
-    image: sign-verify-frontend:v1.0 # Use the name of your frontend image
+    image: megha2119/sign-verify-frontend:v1.0 # Use the name of your frontend image
     # build:
     #   context: .
     #   dockerfile: Dockerfile.frontend  # Path to your Dockerfile.frontend
